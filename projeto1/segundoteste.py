@@ -1,0 +1,116 @@
+from PyQt5 import  uic,QtWidgets
+import sqlite3
+
+
+def chama_segunda_tela():
+    primeira_tela.label_4.setText("")
+    nome_usuario = primeira_tela.lineEdit.text()
+    senha = primeira_tela.lineEdit_2.text()
+
+    banco = sqlite3.connect('banco_cadastro.db') 
+    cursor = banco.cursor()
+
+    
+
+    try:
+        cursor.execute("SELECT senha FROM cadastro WHERE login= '{}'".format(nome_usuario))
+        senha_bd = cursor.fetchall()
+        print(senha_bd)
+        banco.close()
+    except:
+        primeira_tela.label_6.setText("Erro ao validar o login")
+
+    if senha == senha_bd[0][0] :
+        primeira_tela.close()
+        segunda_tela.show()
+    else :
+        primeira_tela.label_6.setText("Dados de login incorretos!")
+        
+
+def logout():
+    segunda_tela.close()
+    primeira_tela.show()
+
+def logout2():
+    tela_cadastro.close()
+    primeira_tela.show()
+
+def abre_tela_cadastro():
+    tela_cadastro.show()
+
+def cadastrar():
+
+    nome = tela_cadastro.lineEdit.text()
+    usuario = tela_cadastro.lineEdit_2.text()
+    senha = tela_cadastro.lineEdit_3.text()
+    c_senha = tela_cadastro.lineEdit_4.text()
+
+    if (senha == c_senha):
+        try:
+            banco = sqlite3.connect('banco_cadastro.db') 
+            cursor = banco.cursor()
+            cursor.execute("CREATE TABLE IF NOT EXISTS cadastro (nome text,login text,senha text)")
+            cursor.execute("INSERT INTO cadastro VALUES ('"+nome+"','"+usuario+"','"+senha+"')")
+
+            banco.commit() 
+            banco.close()
+            tela_cadastro.label_9.setText("Usuario cadastrado com sucesso")
+            
+
+        except sqlite3.Error as erro:
+            print("Erro ao inserir os dados: ",erro)
+    else:
+        tela_cadastro.label_6.setText("As senhas digitadas estão diferentes")
+    
+app=QtWidgets.QApplication([])
+primeira_tela=uic.loadUi("primeira_tela.ui")
+segunda_tela = uic.loadUi("segunda_tela.ui")
+tela_cadastro = uic.loadUi("tela_cadastro.ui")
+MaouGakuin = uic.loadUi("MaouGakuin.ui")
+Tbate = uic.loadUi("Tbate.ui")
+SoloLeveling = uic.loadUi("SoloLeveling.ui")
+MaouGakuin_Novel_Cap_1 = uic.loadUi("MaouGakuin_Novel_Cap_1.ui")
+MaouGakuin_Novel_Cap_2 = uic.loadUi("MaouGakuin_Novel_Cap_2.ui")
+MaouGakuin_Novel_Cap_3 = uic.loadUi("MaouGakuin_Novel_Cap_3.ui")
+SoloLeveling_Novel_Cap_1 = uic.loadUi("SoloLeveling_Novel_Cap_1.ui")
+SoloLeveling_Novel_Cap_2 = uic.loadUi("SoloLeveling_Novel_Cap_2.ui")
+SoloLeveling_Novel_Cap_3 = uic.loadUi("SoloLeveling_Novel_Cap_3.ui")
+Tbate_Novel_Cap_1 = uic.loadUi("Tbate_Novel_Cap_1.ui")
+Tbate_Novel_Cap_2 = uic.loadUi("Tbate_Novel_Cap_2.ui")
+Tbate_Novel_Cap_3 = uic.loadUi("Tbate_Novel_Cap_3.ui")
+primeira_tela.pushButton.clicked.connect(chama_segunda_tela)
+segunda_tela.pushButton.clicked.connect(logout)
+segunda_tela.pushButton_2.clicked.connect(MaouGakuin.show)
+segunda_tela.pushButton_3.clicked.connect(Tbate.show)
+segunda_tela.pushButton_4.clicked.connect(SoloLeveling.show)
+primeira_tela.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
+primeira_tela.pushButton_2.clicked.connect(abre_tela_cadastro)
+tela_cadastro.pushButton.clicked.connect(cadastrar) 
+tela_cadastro.pushButton_2.clicked.connect(logout2) 
+#SoloLeveling, 3cap
+SoloLeveling_Novel_Cap_1.pushButton.clicked.connect(SoloLeveling_Novel_Cap_1.close)
+SoloLeveling_Novel_Cap_2.pushButton.clicked.connect(SoloLeveling_Novel_Cap_2.close)
+SoloLeveling_Novel_Cap_3.pushButton.clicked.connect(SoloLeveling_Novel_Cap_3.close)
+SoloLeveling.pushButton.clicked.connect(SoloLeveling_Novel_Cap_1.show)
+SoloLeveling.pushButton_2.clicked.connect(SoloLeveling_Novel_Cap_2.show)
+SoloLeveling.pushButton_3.clicked.connect(SoloLeveling_Novel_Cap_3.show)
+SoloLeveling.pushButton_4.clicked.connect(SoloLeveling.close)
+#Tbate, 3cap
+Tbate_Novel_Cap_1.pushButton.clicked.connect(Tbate_Novel_Cap_1.close)
+Tbate_Novel_Cap_2.pushButton.clicked.connect(Tbate_Novel_Cap_2.close)
+Tbate_Novel_Cap_3.pushButton.clicked.connect(Tbate_Novel_Cap_3.close)
+Tbate.pushButton.clicked.connect(Tbate_Novel_Cap_1.show)
+Tbate.pushButton_2.clicked.connect(Tbate_Novel_Cap_2.show)
+Tbate.pushButton_3.clicked.connect(Tbate_Novel_Cap_3.show)
+Tbate.pushButton_4.clicked.connect(Tbate.close)
+#Maou Gakuin, 3 caps
+MaouGakuin_Novel_Cap_1.pushButton.clicked.connect(MaouGakuin_Novel_Cap_1.close)
+MaouGakuin_Novel_Cap_2.pushButton.clicked.connect(MaouGakuin_Novel_Cap_2.close)
+MaouGakuin_Novel_Cap_3.pushButton.clicked.connect(MaouGakuin_Novel_Cap_3.close)
+MaouGakuin.pushButton.clicked.connect(MaouGakuin_Novel_Cap_1.show)
+MaouGakuin.pushButton_2.clicked.connect(MaouGakuin_Novel_Cap_2.show)
+MaouGakuin.pushButton_3.clicked.connect(MaouGakuin_Novel_Cap_3.show)
+MaouGakuin.pushButton_4.clicked.connect(MaouGakuin.close)
+
+primeira_tela.show()
+app.exec()
