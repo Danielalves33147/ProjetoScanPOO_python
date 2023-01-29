@@ -35,14 +35,8 @@ def logout2():
     tela_cadastro.close()
     primeira_tela.show()
 
-def novel():
-    MaouGakuin.show()
-
 def abre_tela_cadastro():
     tela_cadastro.show()
-
-def voltarMenu():
-    MaouGakuin_Novel_Cap_1.close()
 
 def cadastrar():
 
@@ -73,16 +67,42 @@ primeira_tela=uic.loadUi("primeira_tela.ui")
 segunda_tela = uic.loadUi("segunda_tela.ui")
 tela_cadastro = uic.loadUi("tela_cadastro.ui")
 MaouGakuin = uic.loadUi("MaouGakuin.ui")
+Tbate = uic.loadUi("Tbate.ui")
+SoloLeveling = uic.loadUi("SoloLeveling.ui")
 MaouGakuin_Novel_Cap_1 = uic.loadUi("MaouGakuin_Novel_Cap_1.ui")
 MaouGakuin_Novel_Cap_2 = uic.loadUi("MaouGakuin_Novel_Cap_2.ui")
 MaouGakuin_Novel_Cap_3 = uic.loadUi("MaouGakuin_Novel_Cap_3.ui")
+SoloLeveling_Novel_Cap_1 = uic.loadUi("SoloLeveling_Novel_Cap_1.ui")
+SoloLeveling_Novel_Cap_2 = uic.loadUi("SoloLeveling_Novel_Cap_2.ui")
+SoloLeveling_Novel_Cap_3 = uic.loadUi("SoloLeveling_Novel_Cap_3.ui")
+Tbate_Novel_Cap_1 = uic.loadUi("Tbate_Novel_Cap_1.ui")
+Tbate_Novel_Cap_2 = uic.loadUi("Tbate_Novel_Cap_2.ui")
+Tbate_Novel_Cap_3 = uic.loadUi("Tbate_Novel_Cap_3.ui")
 primeira_tela.pushButton.clicked.connect(chama_segunda_tela)
 segunda_tela.pushButton.clicked.connect(logout)
-segunda_tela.pushButton_2.clicked.connect(novel)
+segunda_tela.pushButton_2.clicked.connect(MaouGakuin.show)
+segunda_tela.pushButton_3.clicked.connect(Tbate.show)
+segunda_tela.pushButton_4.clicked.connect(SoloLeveling.show)
 primeira_tela.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
 primeira_tela.pushButton_2.clicked.connect(abre_tela_cadastro)
 tela_cadastro.pushButton.clicked.connect(cadastrar) 
 tela_cadastro.pushButton_2.clicked.connect(logout2) 
+#SoloLeveling, 3cap
+SoloLeveling_Novel_Cap_1.pushButton.clicked.connect(SoloLeveling_Novel_Cap_1.close)
+SoloLeveling_Novel_Cap_2.pushButton.clicked.connect(SoloLeveling_Novel_Cap_2.close)
+SoloLeveling_Novel_Cap_3.pushButton.clicked.connect(SoloLeveling_Novel_Cap_3.close)
+SoloLeveling.pushButton.clicked.connect(SoloLeveling_Novel_Cap_1.show)
+SoloLeveling.pushButton_2.clicked.connect(SoloLeveling_Novel_Cap_2.show)
+SoloLeveling.pushButton_3.clicked.connect(SoloLeveling_Novel_Cap_3.show)
+SoloLeveling.pushButton_4.clicked.connect(SoloLeveling.close)
+#Tbate, 3cap
+Tbate_Novel_Cap_1.pushButton.clicked.connect(Tbate_Novel_Cap_1.close)
+Tbate_Novel_Cap_2.pushButton.clicked.connect(Tbate_Novel_Cap_2.close)
+Tbate_Novel_Cap_3.pushButton.clicked.connect(Tbate_Novel_Cap_3.close)
+Tbate.pushButton.clicked.connect(Tbate_Novel_Cap_1.show)
+Tbate.pushButton_2.clicked.connect(Tbate_Novel_Cap_2.show)
+Tbate.pushButton_3.clicked.connect(Tbate_Novel_Cap_3.show)
+Tbate.pushButton_4.clicked.connect(Tbate.close)
 #Maou Gakuin, 3 caps
 MaouGakuin_Novel_Cap_1.pushButton.clicked.connect(MaouGakuin_Novel_Cap_1.close)
 MaouGakuin_Novel_Cap_2.pushButton.clicked.connect(MaouGakuin_Novel_Cap_2.close)
