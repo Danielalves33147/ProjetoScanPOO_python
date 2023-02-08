@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename="style.css")}}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="main-login">
+        <div class="left-login">
+            <h1>Faça Login <br> E Aproveite</h1>
+            <img src="{{url_for('static',filename="Leitora.svg")}}" class="left-login-image" alt="Leitoraanimação">
+        </div>
+        <div class="right-login">
+            <div class="card-login">
+                <h1>LOGIN</h1>
+                <form action="" novalidate id="formulario" class="textfield">
+                    
+                    <label for="usuario">Usuário</label>
+                    <input type="text" name="usuario" id="usuario" placeholder="Usuario">
+                
+                    <label for="senha">Senha</label>
+                    <input type="password" name="senha" id="senha" placeholder="Senha">
+
+                    <br>
+                    <button class="btn-login" onclick="pegarDados()">Login</button> 
+                    <br> 
+                    <button class="btn-cads" onclick="">Cadastrar</button>   
+                
+            </form>
+            
+        </div>
+    </div>
+</div>
+<script >
+    function pegarDados() {
+        console.log("Testando");
+        let obj = {
+            nome: document.getElementById("usuario").value,
+            senha: document.getElementById("senha").value,
+        }
+        
+        console.log(obj)
+    }
+</script>
+</body>
+</html>
